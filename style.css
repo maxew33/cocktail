@@ -1,0 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Montserrat&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+body{
+  background: hsl(49, 100%, 50%);
+}
+
+.container{
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template: 20% 80% / 30% 70%;
+  background: white;
+}
+
+.title{
+  font-size: 5rem;
+  font-family: 'Courgette', cursive;
+  place-self: center;
+  color: #FDCD00;
+  grid-row: 1;
+  grid-column: 1/3;
+}
+
+/* === Index alphabétique === */
+
+.cocktail-letters-container{
+  width: 100%;
+  height: 90%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  grid-row: 2;
+  grid-column: 1;
+} 
+
+.cocktail-letter{
+  width: 90%;
+  height: 90%;
+  color: hsl(49, 100%, 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  font-weight: bolder;
+  border-radius: 20px;
+  box-shadow: 4px 4px 12px 1px rgba(0, 0, 0, .15);
+}
+
+.cocktail-letter:hover{
+  box-shadow: 0px 0px 22px 10px rgba(0, 0, 0, .15);
+}
+
+.pushed{
+  background: hsl(49, 100%, 50%);
+  color: white;
+}
+
+/* === liste des cocktails === */
+
+.cocktail-list-container{
+  grid-row: 2;
+  grid-column: 2;
+  margin-left: 5vw;
+}
+
+.cocktail-list{
+  position: absolute;
+  height: 75vh;
+  transform: scale(0,0);
+  transition: transform .25s ease-in-out;
+  transform-origin: top left;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 2.5vw;
+}
+
+.cocktail-list[data-id='default']{
+  font-size: 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+  cursor: default;
+}
+
+.cocktail-name{
+  font-size: 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;  
+  Text-shadow: 1px 1px 0 white, 
+  1px -1px 0 white, 
+  -1px 1px 0 white, 
+  -1px -1px 0 white, 
+  1px 0px 0 white, 
+  0px 1px 0 white, 
+  -1px 0px 0 white, 
+  0px -1px 0 white;
+}
+
+.cocktail-name:hover{
+  font-weight: bolder;
+}
+
+.shown{
+  transform: scale(1, 1);
+}
+
+/* === recette === */
+
+.recipe{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate( -50%, -50%);
+  height: 100vh;
+  width: 100vw;
+  background: radial-gradient(75vw 75vw, hsl(49, 100%, 50%), hsl(49, 100%, 75%));
+
+  display: grid;
+  grid-template: 20% 80% / repeat(2, 1fr);
+  clip-path: circle(0%);
+  transition: clip-path .5s ease-in-out;
+}
+
+.cocktail-title{
+  grid-row: 1;
+  grid-column: 1 / 3;
+  justify-self: center;
+  align-self: center;
+  color: white;
+}
+
+.img-container{
+  grid-row: 2;
+  grid-column: 1;
+  justify-self: center;
+  margin-left: 5%;
+  width: min(75vh, 45vw);
+  height: min(75vh, 45vw);
+  overflow: hidden;
+  border-radius: 25px;
+}
+
+.cocktail-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  justify-self: center;
+  align-self: top;
+  transition: transform .25s ease-in-out;
+}
+
+.cocktail-img:hover{
+  transform: scale(1.25);
+}
+
+.recipe-container{
+  grid-row: 2;
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cocktail-ingredients-container,
+.cocktail-recipe{
+  width: 95%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.15rem;
+  line-height: 115%;
+}
+
+.cocktail-ingredients{
+  height: 10rem;
+  width: 100%;
+  display: grid;
+  grid-template: repeat(auto-fit, 2rem) / repeat(auto-fit, minmax(33%, auto));
+  grid-auto-flow: column;
+}
+
+.cocktail-ingredients > li{
+  padding-left: 2.5vw;
+}
+
+.cocktail-ingredients-container > h3,
+.cocktail-recipe > h3{
+  padding: 1vh 5vw;
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: bolder;
+  color: white;
+}
+
+.cocktail-instructions{
+  padding-left: 2.5vw;
+  line-height: 150%;    
+}
+
+.appear{
+  clip-path: circle(100%);
+}
+
+.exit-cross{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 2.5rem;
+  color: hsl(20, 100%, 50%);
+  cursor: pointer;
+  transition: transform .25s ease-in-out;
+}
+
+.exit-cross:hover{
+  transform : scale(1.25);
+}
+
+.bartender{
+  position: absolute;
+  max-width: 60vw;
+  max-height: 60vh;
+  bottom: 10px;
+  right: 10px;
+  z-index: 0;
+}
+
+@media (max-width : 1200px){
+  .container{
+    grid-template-rows: 15% 20% 65%;
+  }
+  
+  .cocktail-letters-container{
+    grid-template-columns: repeat(12, 1fr);
+    width: 90%;
+    justify-self: center;
+    grid-row: 2;
+    grid-column: 1/3;
+  }
+  
+  .cocktail-list-container{
+    grid-row: 3;
+    grid-column: 1/3;
+  }
+  
+  .cocktail-list{
+    height: 60vh;
+  }
+  
+  .cocktail-ingredients,
+  .cocktail-recipe{
+    font-size: 1rem;
+  }
+}
+  
+@media (max-width : 992px){
+  .title{
+    font-size: 4rem;
+  }
+  
+  .cocktail-name{
+    font-size: 1.25rem;
+  }
+  
+  .recipe{
+    grid-template: 30% 70% / repeat(2, 1fr);
+  }
+  
+  .cocktail-title{
+    grid-column: 2;
+  }
+  
+  .img-container{
+    grid-row: 1;
+    grid-column: 1;
+    margin-top: 5vh;
+    height: min(40vw, 30vh);
+    width: min(40vw, 30vh);
+    place-self: center;
+  }
+
+  .recipe-container{
+    grid-column: 1/3;
+  }
+  
+  .cocktail-ingredients-container,
+  .cocktail-recipe{
+    margin-top: 5vh;
+  }
+}
+  
+@media (max-width : 768px){
+  .title{
+    font-size: 3rem;
+  }
+  
+  .cocktail-name{
+    font-size: 1rem;
+  }
+  
+  .cocktail-ingredients,
+  .cocktail-recipe{
+    font-size: 1rem;
+  }
+
+  .cocktail-ingredients-container > h3,
+  .cocktail-recipe > h3{
+    font-size: 1.25rem;
+  }
+}
+  
+  @media (max-width : 525px){
+    .title{
+      font-size: 2rem;
+    }
+
+    .cocktail-letters-container
+    {
+      grid-template-columns: repeat(8, 1fr);
+    }
+
+    .cocktail-letter{
+      font-size: 1.5rem;
+    }
+
+    .cocktail-name{
+      font-size: 1rem;
+    }
+
+    .recipe{
+      grid-template: 25% 75% / repeat(2, 1fr);
+    }
+  }
